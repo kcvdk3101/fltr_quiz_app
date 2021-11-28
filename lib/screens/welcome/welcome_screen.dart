@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -9,6 +10,7 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill,),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -19,26 +21,28 @@ class WelcomeScreen extends StatelessWidget {
                   Text("Let's play Quiz", 
                     style: TextStyle(
                       fontSize: 40, 
-                      color: Colors.deepPurpleAccent
+                      color: Colors.white
                     )
                   ),
                   Text("Enter your information below"),
-                  Spacer(),
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFF1C2341),
-                      hintText: "Full name",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12))
-                      )
+                  Padding(
+                    padding: const EdgeInsets.only(top: kDefaultPadding),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xFF1C2341),
+                        hintText: "Full name",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                        )
+                      ),
                     ),
                   ),
-                  Spacer(),
                   InkWell(
-                    onTap: () => {},
+                    onTap: () => Get.to(QuizScreen()),
                     child: Container(
                       width: double.infinity,
+                      margin: EdgeInsets.only(top: kDefaultPadding / 2),
                       padding: EdgeInsets.all(kDefaultPadding * .75),
                       decoration: BoxDecoration(
                         gradient: kPrimaryGradient, 
@@ -47,8 +51,8 @@ class WelcomeScreen extends StatelessWidget {
                       child: Text("Start a quiz", 
                         style: Theme.of(context)
                           .textTheme
-                          .button
-                          .copyWith(color: Colors.black)
+                          .headline6
+                          .copyWith(color: kBlackColor)
                       ),
                     ),
                   ),
